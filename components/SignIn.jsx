@@ -32,7 +32,6 @@ class SignIn extends Component{
     const user = await rawResponse.json();
     console.log(user);
     setCookie(TOKEN, user.token)
-    // Router.push('/');
     this.props.authorizationAction(user)
   }
 
@@ -68,7 +67,6 @@ class SignIn extends Component{
 const mapDispatchToProps = (dispatch) => {
   return {
     authorizationAction: (user) => dispatch(authorizationAction(user)),
-      
   }
 }
 

@@ -56,16 +56,13 @@ import {wrapper} from '../redux/store'
 import ListCategory from '../components/ListCategory';
 import SignIn from '../components/SignIn';
 import { GET_ALL_USERS, GET_USER_FROM_TOKEN } from './api/apiConfig';
-import { authorizationAction, authorizationActionFalure } from '../redux/actions/authActions';
+import { authorizationAction, authorizationActionFalure, logoutAction } from '../redux/actions/authActions';
 import { TOKEN, getCookie } from '../utils/cookie';
+import { bindActionCreators } from 'redux';
+import UserInfoView from '../components/UserInfoView';
 
 const Index = ({user}) => {
-    console.log('user info show view ', user)
-    if(user && user.email){
-        return <p>Hello {user.email}</p> 
-    } else {
-        return <SignIn/>
-    }
+   return <UserInfoView/>
 }
 
 export const getServerSideProps = wrapper.getServerSideProps( async (context) => {
@@ -98,11 +95,12 @@ export const getServerSideProps = wrapper.getServerSideProps( async (context) =>
 const mapStateToProps = state => ({
     categories : state.counterReducer.categories,
     user : state.authenticateReducer.user
-});
+})
 
-const mapDispatchToProps = {
-    incrementCounter: incrementCounter,
-    decrementCounter: decrementCounter,
-};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLogout : bindActionCreators(logoutAction, dispatch)
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

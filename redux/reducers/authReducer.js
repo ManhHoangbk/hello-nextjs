@@ -1,4 +1,4 @@
-import { AUTHENTICATE, DEAUTHENTICATE, authenticateAction, AUTHORIZATION } from '../actions/authActions';
+import { AUTHENTICATE, DEAUTHENTICATE, authenticateAction, AUTHORIZATION, LOG_OUT } from '../actions/authActions';
 
 const initialState = {
   token: null,
@@ -12,9 +12,11 @@ const authenticateReducer = (state = initialState, action) => {
         return { token: action.user.token, user : action.user };
     case DEAUTHENTICATE:
         return { token: null };
+    case LOG_OUT:
+      return initialState
     default:
-        return state;
-    }
+      return state;
+  }
 };
 
 export default authenticateReducer

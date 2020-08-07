@@ -32,18 +32,14 @@ const getCookieFromBrowser = key => {
 };
 
 const getCookieFromServer = (key, req) => {
-  console.log('cookie server ', req.headers)
   if (!req.headers || !req.headers.cookie) {
     return undefined;
   }
   const rawCookie = req.headers.cookie
     .split(';')
     .find(c => c.trim().startsWith(`${key}=`));
-  console.log('rawCookie ', rawCookie)
   if (!rawCookie) {
     return undefined;
   }
-  let x = rawCookie.split('=')[1]
-  console.log('token value ', x)
-  return x;
+  return rawCookie.split('=')[1]
 };

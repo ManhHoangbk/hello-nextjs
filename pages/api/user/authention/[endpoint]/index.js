@@ -52,6 +52,7 @@ export default function userAuthention(req, res) {
         allUsers.forEach(element => {
           if(element.email == userToken.id){
             user = element;
+            user.token = query.token
           }
         });
         res.status(200).json(user)

@@ -53,9 +53,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {decrementCounter, incrementCounter, LOADED_CATEGORY, loadedCategory} from '../redux/actions/counterActions';
 import {wrapper} from '../redux/store'
-import ListCategory from '../components/ListCategory';
-import SignIn from '../components/SignIn';
-import { GET_ALL_USERS, GET_USER_FROM_TOKEN, BASE_URL_API } from './api/apiConfig';
+import { GET_USER_FROM_TOKEN, BASE_URL_API } from './api/apiConfig';
 import { authorizationAction, authorizationActionFalure, logoutAction } from '../redux/actions/authActions';
 import { TOKEN, getCookie } from '../utils/cookie';
 import { bindActionCreators } from 'redux';

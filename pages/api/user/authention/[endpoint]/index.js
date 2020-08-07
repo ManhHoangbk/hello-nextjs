@@ -1,11 +1,10 @@
 import { GET_ALL_USERS, USER_LOGIN, jwtSecret, GET_USER_FROM_TOKEN, TOKEN_EXPIRED } from "../../../apiConfig";
 import { allUsers } from '../../../../../data.js'
 import jwt from "jsonwebtoken";
-import { setCookie, getCookie, TOKEN } from "../../../../../utils/cookie";
-import e from "express";
+
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: true,
   },
 }
 
@@ -23,6 +22,7 @@ export function jwtDecodeToken (token){
 }
 
 export default function userAuthention(req, res) {
+  console.log('req ', req)
   let {query, method, body, params} = req;
   let user = {};
   console.log('endpoint11 ', query.endpoint, ' method ', method, 'body ', body, ' param ', query.token)

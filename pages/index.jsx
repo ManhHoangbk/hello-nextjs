@@ -55,7 +55,7 @@ import {decrementCounter, incrementCounter, LOADED_CATEGORY, loadedCategory} fro
 import {wrapper} from '../redux/store'
 import ListCategory from '../components/ListCategory';
 import SignIn from '../components/SignIn';
-import { GET_ALL_USERS, GET_USER_FROM_TOKEN } from './api/apiConfig';
+import { GET_ALL_USERS, GET_USER_FROM_TOKEN, BASE_URL_API } from './api/apiConfig';
 import { authorizationAction, authorizationActionFalure, logoutAction } from '../redux/actions/authActions';
 import { TOKEN, getCookie } from '../utils/cookie';
 import { bindActionCreators } from 'redux';
@@ -69,7 +69,7 @@ export const getServerSideProps = wrapper.getServerSideProps( async (context) =>
     let token = getCookie(TOKEN, context.req);
     let userInfo = null;
     if(token){
-        let response = await fetch('http://localhost:3000/api/user/authention/' + GET_USER_FROM_TOKEN + '?token='+ token)
+        let response = await fetch(BASE_URL_API +'api/user/authention/' + GET_USER_FROM_TOKEN + '?token='+ token)
         if( response.status == 200){
             let user = await response.json();
             if(user && user.email){

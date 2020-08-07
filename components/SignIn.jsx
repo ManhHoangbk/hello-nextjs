@@ -6,7 +6,7 @@ import { setCookie, TOKEN } from '../utils/cookie'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Component } from 'react';
-import { USER_LOGIN } from '../pages/api/apiConfig';
+import { USER_LOGIN, BASE_URL_API } from '../pages/api/apiConfig';
 
 
 class SignIn extends Component{
@@ -21,7 +21,7 @@ class SignIn extends Component{
       password: passwordElement.value,
     }
     console.log('obj json ', obj)
-    const rawResponse = await fetch('/api/user/authention/' + USER_LOGIN, {
+    const rawResponse = await fetch(BASE_URL_API +'api/user/authention/' + USER_LOGIN, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

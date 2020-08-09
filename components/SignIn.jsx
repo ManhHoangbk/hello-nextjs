@@ -6,8 +6,9 @@ import { setCookie, TOKEN } from '../utils/cookie'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Component } from 'react';
-import { USER_LOGIN, BASE_URL_API } from '../pages/api/apiConfig';
+import { USER_LOGIN } from '../pages/api/apiConfig';
 import fetch from 'isomorphic-unfetch'
+import { Button, TextField } from '@material-ui/core';
 
 
 class SignIn extends Component{
@@ -22,7 +23,7 @@ class SignIn extends Component{
       password: passwordElement.value,
     }
     console.log('obj json ', obj)
-    const rawResponse = await fetch(BASE_URL_API +'api/user/authention/' + USER_LOGIN, {
+    const rawResponse = await fetch(process.env.BASE_URL_API +'api/user/authention/' + USER_LOGIN, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(obj)
@@ -38,21 +39,22 @@ class SignIn extends Component{
       <>
       <h1>Sign In</h1>
       <form onSubmit={this.handleSubmit.bind(this)}>
-        <Field
+        <TextField
           name="email"
           type="email"
           autoComplete="email"
           required
           label="Email"
         />
-        <Field
+        <TextField
           name="password"
           type="password"
           autoComplete="password"
           required
           label="Password"
         />
-        <button type="submit">Sign in</button> or{' '}
+        <Button variant="contained" color="primary" type="submit">Sign in</Button>
+        or{' '}
         <Link href="signup">
           <a>Sign up</a>
         </Link>

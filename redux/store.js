@@ -10,6 +10,8 @@ import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunkMiddleware from 'redux-thunk'
 import counterReducer from '../redux/reducers/counterReducer';
 import authenticateReducer from '../redux/reducers/authReducer'
+import appInfoReducer from '../redux/reducers/topicReducer'
+import userRateReducer from '../redux/reducers/UserRateReducer'
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -21,7 +23,9 @@ const bindMiddleware = (middleware) => {
 
 const combinedReducer = combineReducers({
     counterReducer,
-    authenticateReducer
+    authenticateReducer,
+    appInfoReducer,
+    userRateReducer
     
 });
 

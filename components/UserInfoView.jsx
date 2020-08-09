@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { logoutAction } from "../redux/actions/authActions";
 import SignIn from "./SignIn";
 import { removeCookie, TOKEN } from "../utils/cookie";
+import Button from '@material-ui/core/Button';
 
 
 class UserInfoView extends Component{
@@ -22,7 +23,7 @@ class UserInfoView extends Component{
         if(user && user.email){
             return <div>
                     <p>Hello {user.email}</p> 
-                    <button onClick={() => this.handelLogout()}> Logout</button>
+                    <Button variant="contained" color="primary" onClick={() => this.handelLogout()}>Logout</Button>
                 </div>
         } else {
             return <SignIn/>

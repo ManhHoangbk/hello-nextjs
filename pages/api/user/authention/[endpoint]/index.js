@@ -22,7 +22,6 @@ export function jwtDecodeToken (token){
 }
 
 export default function userAuthention(req, res) {
-  console.log('req ', req)
   let {query, method, body, params} = req;
   let user = {};
   console.log('endpoint11 ', query.endpoint, ' method ', method, 'body ', body, ' param ', query.token)
@@ -57,11 +56,11 @@ export default function userAuthention(req, res) {
         });
         res.status(200).json(user)
       } else {
-        res.status(405).json('token is exprired')
+        res.status(401).json({result :'token is exprired'})
       }
       break
     default:
       res.setHeader('Allow', ['GET', 'PUT'])
-      res.status(405).end({result : 'endpoint not valid'})
+      res.status(404).end({result : 'endpoint not valid'})
   }
 }

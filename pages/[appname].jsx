@@ -27,10 +27,6 @@ const Index = ({appInfo}) => {
                     <TopicContent appInfo={appInfo}/>
                     <TopicCategories 
                         parentId={parentId} appNameId={appNameId} 
-                        hasState={appInfo && appInfo.hasState}
-                        onChangeState={() => {
-                            setOpenPopupChangeState(true);
-                        }}
                     />
                  </MainWidget>
             </Layout>

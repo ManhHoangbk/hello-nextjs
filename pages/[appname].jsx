@@ -16,13 +16,13 @@ import TopicCategories from '../components/home/TopicCategories';
 import { useRouter } from 'next/router';
 
 
-const Index = ({appInfo}) => {
+const Index = ({appInfo, stateInfoState}) => {
     // console.log('appInfo ', appInfo)
     if(appInfo){
         const {query } = useRouter()
         let appNameId = query.appname
         let parentId = appInfo.id;
-        if(appInfo && appInfo.hasState && stateInfoState.mapCurrentStateInfo[appInfo.id]){
+        if(appInfo && appInfo.hasState && stateInfoState && stateInfoState.mapCurrentStateInfo[appInfo.id]){
             parentId = stateInfoState.mapCurrentStateInfo[appInfo.id].id;
         }
         return (

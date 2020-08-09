@@ -22,6 +22,7 @@ const Meta = ({seo}) => {
         <meta name="twitter:card" content="summary" /> 
         <meta name="twitter:site" content="@propernounco" />
         <meta name="twitter:creator" content="@propernounco" /> */}
+        <link rel="canonical" href="https://hello-nextjs-sigma.vercel.app/"></link>
         <link rel="icon" type="image/png" href="images/logo.svg" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
         {

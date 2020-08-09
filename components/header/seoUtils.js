@@ -1,7 +1,7 @@
 export const getDataSEOTopic = (topic) =>{
     var obj = {}
     if(topic){
-        obj.title = topic.title
+        obj.title = topic.appName
         obj.desc = topic.description
         obj.image = topic.avatar
         obj.url = '/'+topic.appNameId

@@ -24,5 +24,4 @@ export const getTopicsByParentId = async (parentId, dispatch) => {
     let res = await fetch('https://webappapi-dot-micro-enigma-235001.appspot.com/data?type=get_topics_by_parent_id&parentId=' + parentId);
     let data = await res.json();
     dispatch(loadTopicSuccess(data))
-    console.log('data ', data)
 }

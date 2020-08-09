@@ -7,10 +7,11 @@ import { TOKEN, getCookie } from '../utils/cookie';
 import { bindActionCreators } from 'redux';
 import UserInfoView from '../components/UserInfoView';
 import Layout from '../components/layout';
+import { getDataSEOHomePage } from '../components/header/seoUtils';
 
 const Index = ({user}) => {
     return (
-    <Layout>
+    <Layout seo={getDataSEOHomePage()}>
         <UserInfoView/>
     </Layout>
     )

@@ -41,7 +41,7 @@ const TopicContent = ({appInfo}) =>{
                     <div className="app-info-name">
                         <Image src={appInfo.avatar} alt={appInfo.appName} width="100px" height="100px" />
                         <div className="app-child-name">
-                            <div><strong>{appInfo.appName}</strong></div>
+                            <h2>{appInfo.appName}</h2>
                             <Rating name="read-only" value={5} readOnly size="small" style={{marginTop: '10px'}} />
                         </div>
                     </div>

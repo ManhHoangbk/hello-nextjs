@@ -9,7 +9,7 @@ const Meta = ({seo}) => {
       <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       <meta charSet="utf-8" />
         <title>{seo.title}</title>
-        <meta name="title" content={seo.title} />
+        <meta name="title" content={seo.appName} />
         <meta name="description" content={seo.desc} />
         <meta name="keywords" content={seo.keywords} />
         <meta name="og:title" property="og:title" content={seo.title} />

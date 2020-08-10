@@ -20,9 +20,9 @@ import '../styles/main.global.scss'
 
 const Index = ({appInfo}) => {
     const router = useRouter()
-    if (router.isFallback) {
+    if (router.isFallback || !appInfo) {
         return <LoadingWidget color={null} />
-    } else if(appInfo){
+    } else {
         const {query } = useRouter()
         let appNameId = query.appname
         let parentId = appInfo.id;
@@ -36,8 +36,6 @@ const Index = ({appInfo}) => {
                  </MainWidget>
             </Layout>
         )
-    } else{
-        return <p>Not found</p>
     }
 }
 

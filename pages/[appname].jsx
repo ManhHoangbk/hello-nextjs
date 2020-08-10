@@ -14,6 +14,8 @@ import TopicContent from '../components/home/TopicContent';
 import { MainWidget, LoadingWidget } from '../components/widgets';
 import TopicCategories from '../components/home/TopicCategories';
 import { useRouter } from 'next/router';
+import '../styles/home.global.scss'
+import '../styles/main.global.scss'
 
 
 const Index = ({appInfo}) => {

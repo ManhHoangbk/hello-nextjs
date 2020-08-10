@@ -12,11 +12,23 @@ const Meta = ({seo}) => {
         <meta name="title" content={seo.appName} />
         <meta name="description" content={seo.desc} />
         <meta name="keywords" content={seo.keywords} />
+        <meta name="url" content={`https://hello-nextjs-sigma.vercel.app${seo.url}`} />
+        
         <meta name="og:title" property="og:title" content={seo.title} />
         <meta name="og:description" property="og:description" content={seo.desc} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://hello-nextjs-sigma.vercel.app${seo.url}`} />  
-        <meta property="og:site_name" content="Proper Noun" />
+        <meta name="og:type" content="elearning" />
+        <meta name="og:url" content={`https://hello-nextjs-sigma.vercel.app${seo.url}`} />  
+        <meta name="og:email" content="abcteam@gmail.com"/>
+        { seo.image ? ( <meta property="og:image" content={`${seo.image}`} />   ) : null } 
+        <meta name="og:site_name" content="passemall" />
+
+        {/* Apple Meta Tags  */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta content="yes" name="apple-touch-fullscreen" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection" content="telephone=no"/>
+
+        {/* <meta name="fb:page_id" content="43929265776" /> */}
         {/* <meta name="twitter:title" content={data.title} />
         <meta name="twitter:description" content={data.desc} />
         <meta name="twitter:card" content="summary" /> 
@@ -24,14 +36,7 @@ const Meta = ({seo}) => {
         <meta name="twitter:creator" content="@propernounco" /> */}
         <link rel="canonical" href="https://hello-nextjs-sigma.vercel.app/"></link>
         <link rel="icon" type="image/png" href="images/logo.svg" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
-        {
-        seo.image ? (
-        <meta property="og:image" content={`${seo.image}`} />  
-        ) : (
-        <meta property="og:image" content="https://www.propernoun.co/static/images/proper-noun-social.png" />  
-        )   
-        } 
+        
     </Head>
     <HeaderPC/>
       </>

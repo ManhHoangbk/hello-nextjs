@@ -20,8 +20,8 @@ import '../styles/main.global.scss'
 
 const Index = ({appInfo}) => {
     const router = useRouter()
-    if (router.isFallback || !appInfo) {
-        return <LoadingWidget color={null} />
+    if (!appInfo) {
+        return null
     } else {
         const {query } = useRouter()
         let appNameId = query.appname
@@ -39,25 +39,7 @@ const Index = ({appInfo}) => {
     }
 }
 
-export async function getStaticPaths() {
-    var allAppInfos =  JSON.parse(fs.readFileSync('datas/appInfo.json', 'utf8'))
-    const paths = allAppInfos.map(appInfo => {
-        return {
-          params: {
-            // appname: appInfo.appNameId
-            appname: '*'
-          }
-        }
-      })
-    console.log('getStaticPaths')
-    return {
-        paths,
-        fallback: true
-    }
-}
-
-export const getStaticProps = wrapper.getStaticProps(async (context) => {
-    console.log('getStaticProps')
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
     let {appname} = context.params
     let allAppInfos =  JSON.parse(fs.readFileSync('datas/appInfo.json', 'utf8'))
     let appInfo = allAppInfos.filter( appInfo => appInfo.appNameId == appname);
@@ -65,6 +47,16 @@ export const getStaticProps = wrapper.getStaticProps(async (context) => {
     // console.log('appInfo query ', appInfo)
     context.store.dispatch(loadedAppInfoAction(appInfo))
 })
+
+// export const getStaticProps = wrapper.getStaticProps(async (context) => {
+//     console.log('getStaticProps')
+//     let {appname} = context.params
+//     let allAppInfos =  JSON.parse(fs.readFileSync('datas/appInfo.json', 'utf8'))
+//     let appInfo = allAppInfos.filter( appInfo => appInfo.appNameId == appname);
+//     appInfo = appInfo.length > 0 ? appInfo[0] : null
+//     // console.log('appInfo query ', appInfo)
+//     context.store.dispatch(loadedAppInfoAction(appInfo))
+// })
 
 const mapStateToProps = state => ({
     appInfo : state.appInfoReducer.topic

@@ -19,7 +19,10 @@ import '../styles/main.global.scss'
 
 
 const Index = ({appInfo}) => {
-    if(appInfo){
+    const router = useRouter()
+    if (router.isFallback) {
+        return <LoadingWidget color={null} />
+    } else if(appInfo){
         const {query } = useRouter()
         let appNameId = query.appname
         let parentId = appInfo.id;
@@ -43,17 +46,20 @@ export async function getStaticPaths() {
     const paths = allAppInfos.map(appInfo => {
         return {
           params: {
-            appname: appInfo.appNameId
+            // appname: appInfo.appNameId
+            appname: '*'
           }
         }
       })
+    console.log('getStaticPaths')
     return {
         paths,
-        fallback: false
+        fallback: true
     }
 }
 
 export const getStaticProps = wrapper.getStaticProps(async (context) => {
+    console.log('getStaticProps')
     let {appname} = context.params
     let allAppInfos =  JSON.parse(fs.readFileSync('datas/appInfo.json', 'utf8'))
     let appInfo = allAppInfos.filter( appInfo => appInfo.appNameId == appname);

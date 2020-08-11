@@ -19,7 +19,6 @@ import '../styles/main.global.scss'
 
 
 const Index = ({appInfo}) => {
-    const router = useRouter()
     if (!appInfo) {
         return null
     } else {

@@ -8,11 +8,13 @@ import { bindActionCreators } from 'redux';
 import UserInfoView from '../components/UserInfoView';
 import Layout from '../components/layout';
 import { getDataSEOHomePage } from '../components/header/seoUtils';
+import '../styles/home.global.scss'
+import '../styles/main.global.scss'
 
 const Index = ({user}) => {
     return (
     <Layout seo={getDataSEOHomePage()}>
-        <UserInfoView/>
+        <UserInfoView />
     </Layout>
     )
 }

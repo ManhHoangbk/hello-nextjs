@@ -21,7 +21,7 @@ class UserInfoView extends Component{
     render() {
         const {user} = this.props
         if(user && user.email){
-            return <div>
+            return <div className="container">
                     <p>Hello {user.email}</p> 
                     <Button variant="contained" color="primary" onClick={() => this.handelLogout()}>Logout</Button>
                 </div>

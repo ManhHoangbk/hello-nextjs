@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Field from './field'
 import Router from 'next/router';
-import {authenticate, authenticateAction, authorizationAction} from '../redux/actions/authActions'
+import {authenticate, authenticateAction, authorizationAction, USER_FETCH_REQUESTED} from '../redux/actions/authActions'
 import { setCookie, TOKEN } from '../utils/cookie'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -22,16 +22,7 @@ class SignIn extends Component{
       email: emailElement.value,
       password: passwordElement.value,
     }
-    console.log('obj json ', obj)
-    const rawResponse = await fetch(process.env.BASE_URL_API +'api/user/authention/' + USER_LOGIN, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(obj)
-    });
-    const user = await rawResponse.json();
-    console.log(user);
-    setCookie(TOKEN, user.token)
-    this.props.authorizationAction(user)
+    this.props.authorizationAction(obj)
   }
 
   render() {
@@ -66,7 +57,8 @@ class SignIn extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authorizationAction: (user) => dispatch(authorizationAction(user)),
+    // authorizationAction: (user) => dispatch(authorizationAction(user)),
+    authorizationAction: (user) => dispatch({type: USER_FETCH_REQUESTED, user: user})
   }
 }
 

@@ -7,6 +7,10 @@
 
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas'
+
+
 import thunkMiddleware from 'redux-thunk'
 import counterReducer from '../redux/reducers/counterReducer';
 import authenticateReducer from '../redux/reducers/authReducer'
@@ -43,8 +47,22 @@ const reducer = (state, action) => {
   }
 }
 
-const initStore = () => {
-  return createStore(reducer, bindMiddleware([thunkMiddleware]))
+
+export const makeStore = (context) => {
+  const sagaMiddleware = createSagaMiddleware()
+  const store = createStore(reducer, bindMiddleware([sagaMiddleware]))
+
+  store.sagaTask = sagaMiddleware.run(rootSaga)
+
+  return store
 }
 
-export const wrapper = createWrapper(initStore)
+export const wrapper = createWrapper(makeStore, { debug: true })
+
+
+
+// const initStore = () => {
+//   return createStore(reducer, bindMiddleware([thunkMiddleware]))
+// }
+
+// export const wrapper = createWrapper(initStore)
